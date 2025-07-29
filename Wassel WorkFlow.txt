@@ -1,0 +1,62 @@
+C:\SFTP\Wassel
+│   docker-compose.yml
+│   README.md
+│
+├── backend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── .env.example
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── server.ts
+│   │   └── routes
+│   │       ├── auth.ts
+│   │       ├── rides.ts
+│   │       ├── bookings.ts
+│   │       ├── payment.ts
+│   │       ├── reviews.ts
+│   │       ├── loyalty.ts
+│   │       ├── chat.ts
+│   │       ├── notifications.ts
+│   │       ├── admin.ts
+│   │       ├── analytics.ts
+│   │       ├── aiPrice.ts
+│   │       ├── match.ts
+│   │       ├── smartNotifications.ts
+│   │       ├── badges.ts
+│   │       ├── fraud.ts
+│   │       ├── carbon.ts
+│   │       ├── referral.ts
+│   │       └── stripeWebhooks.ts
+│
+├── frontend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── next.config.js
+│   ├── public
+│   │   ├── wassel-logo.svg
+│   │   ├── app-preview.png
+│   │   ├── appstore.svg
+│   │   └── googleplay.svg
+│   └── src
+│       ├── pages
+│       │   ├── index.tsx         (Landing)
+│       │   ├── landing.tsx       (Mobile Landing)
+│       │   ├── admin
+│       │   │   ├── index.tsx
+│       │   │   └── dashboard.tsx
+│       └── styles
+│           └── globals.css
+│
+├── mobile
+│   └── lib
+│       ├── main.dart
+│       └── ai_price.dart
+│
+├── docs
+│   ├── product
+│   │   ├── schema.sql
+│   └── landing_brief.md
