@@ -1,65 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-export default function WaselApp() {
-  const [rides, setRides] = useState([]);
-  const [form, setForm] = useState({ location: '', destination: '', seats: '', isZakaah: false });
-  const [search, setSearch] = useState({ location: '', destination: '' });
-
-  const fetchRides = async () => {
-    const response = await axios.get('http://localhost:3001/rides');
-    setRides(response.data);
-  };
-
-  useEffect(() => {
-    fetchRides();
-  }, []);
-
-  const handlePost = async () => {
-    await axios.post('http://localhost:3001/rides', form);
-    setForm({ location: '', destination: '', seats: '', isZakaah: false });
-    fetchRides();
-  };
-
-  const handleSearch = async () => {
-    const res = await axios.get('http://localhost:3001/search', { params: search });
-    setRides(res.data);
-  };
-
+function App() {
   return (
-    <div className="p-6 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">🚗 Wasel App</h1>
-
-      <div className="mb-4">
-        <h2 className="font-semibold">Post a Ride</h2>
-        <input placeholder="Location" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} className="border p-2 w-full mb-2" />
-        <input placeholder="Destination" value={form.destination} onChange={e => setForm({ ...form, destination: e.target.value })} className="border p-2 w-full mb-2" />
-        <input placeholder="Seats" value={form.seats} onChange={e => setForm({ ...form, seats: e.target.value })} className="border p-2 w-full mb-2" />
-        <label className="flex items-center mb-2">
-          <input type="checkbox" checked={form.isZakaah} onChange={e => setForm({ ...form, isZakaah: e.target.checked })} />
-          <span className="ml-2">Zakaah Seat</span>
-        </label>
-        <button onClick={handlePost} className="bg-blue-500 text-white px-4 py-2 rounded">Post Ride</button>
-      </div>
-
-      <div className="mb-4">
-        <h2 className="font-semibold">Search Rides</h2>
-        <input placeholder="Location" value={search.location} onChange={e => setSearch({ ...search, location: e.target.value })} className="border p-2 w-full mb-2" />
-        <input placeholder="Destination" value={search.destination} onChange={e => setSearch({ ...search, destination: e.target.value })} className="border p-2 w-full mb-2" />
-        <button onClick={handleSearch} className="bg-green-500 text-white px-4 py-2 rounded">Search</button>
-      </div>
-
-      <div>
-        <h2 className="font-semibold mb-2">Available Rides</h2>
-        {rides.map(ride => (
-          <div key={ride.id} className="border rounded p-2 mb-2">
-            <p><strong>From:</strong> {ride.location}</p>
-            <p><strong>To:</strong> {ride.destination}</p>
-            <p><strong>Seats:</strong> {ride.seats}</p>
-            {ride.isZakaah && <span className="text-green-600">Zakaah Ride 🌟</span>}
+    <div className="min-h-screen flex flex-col dark-mode" role="application" aria-label="Wassel Carpooling App" tabIndex="0">
+      <header className="bg-blue-600 text-white p-4 shadow-lg" role="banner">
+        <div className="container mx-auto flex justify-between items-center flex-wrap gap-4">
+          <div className="tooltip group">
+            <img src="/wassel-logo.png" alt="Wassel Logo" className="logo h-10" onError={(e) => e.target.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="} />
+            <span className="tooltiptext">Wassel - Carpooling Made Easy</span>
           </div>
-        ))}
-      </div>
+          <div className="flex items-center space-x-4 flex-wrap">
+          <div className="flex items-center space-x-4 flex-wrap">
+            <span className="text-sm" aria-live="polite" aria-label="Current user: Guest">Welcome, Guest</span>
+            <button className="px-4 py-2 bg-white text-blue-600 dark:text-blue-400 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-all" aria-label="Switch to Driver mode" data-tooltip="Switch role (Alt + S)">
+              Switch to Driver
+            </button>
+            <button className="px-4 py-2 bg-white text-blue-600 dark:text-blue-400 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-all" aria-label="Toggle dark mode">
+              Toggle Theme
+            </button>
+          </div>
+        </div>
+      </header>
+      <main className="container mx-auto px-4 py-6 flex-grow" role="main" aria-live="polite">
+        <section className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6" role="region" aria-label="Placeholder">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Wassel App</h2>
+          <p className="text-gray-600 dark:text-gray-400">This is a placeholder. Add your ride form, list, and impact components here.</p>
+        </section>
+      </main>
+      <footer className="bg-gray-800 dark:bg-gray-900 text-white text-center p-4" role="contentinfo">
+        <p className="text-sm">© 2025 Wassel. Carpool with purpose.</p>
+      </footer>
     </div>
   );
 }
+
+export default App;
